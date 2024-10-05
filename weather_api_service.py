@@ -71,7 +71,7 @@ def _parse_weather_type(gismeteo_dict: dict) -> type_weather:
 
 
 def _parse_wind(gismeteo_dict: dict) -> speed:
-    return gismeteo_dict["response"]["wind"]["speed"]["km_h"]
+    return gismeteo_dict["response"]["wind"]["speed"]["m_s"]
 
 
 if __name__ == "__main__":
