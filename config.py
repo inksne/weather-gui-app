@@ -1,8 +1,4 @@
 USE_ROUNDED_COORDS = True
-OPENWEATHER_API = "e49676dc4ef67ecede4f6823ee1ff6d0"
-OPENWEATHER_URL = (
-    "https://api.openweathermap.org/data/2.5/weather?"
-    "lat={latitude}&lon={longitude}&"
-    "appid=" + OPENWEATHER_API + "&lang=ru&"
-    "units=metric"
+GISMETEO_URL = (
+    "https://api.gismeteo.net/v2/weather/current/?latitude={latitude}&longitude={longitude}&token=a3748bb4-98ba-46f7-a95c-302d9f250869"
 )
