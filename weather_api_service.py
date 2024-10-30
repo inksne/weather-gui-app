@@ -5,6 +5,7 @@ from json.decoder import JSONDecodeError
 import ssl
 import urllib.request
 from urllib.error import URLError
+import asyncio
 
 from coordinates import Coordinates, getlocation
 import config
@@ -76,3 +77,4 @@ def _parse_wind(gismeteo_dict: dict) -> speed:
 
 if __name__ == "__main__":
     print(get_weather(Coordinates(latitude=55.7, longitude=37.6)))
+    weather = asyncio.run(get_weather(Coordinates))

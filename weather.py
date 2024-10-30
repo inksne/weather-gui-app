@@ -8,16 +8,20 @@ from history import save_weather, JSONFileWeatherStorage
 
 def main():
     try:
-        coordinates = get_coordinates()
-    except CantGetCoordinates:
-        print('Не удалось получить координаты')
+        try:
+            coordinates = get_coordinates()
+        except CantGetCoordinates:
+            print('Не удалось получить координаты')
+            exit(1)
+        try:
+            weather = get_weather(coordinates)
+        except ApiServiceError:
+            print(f'Не удалось получить погоду по координатам {coordinates}')
+            exit(1)
+        print(format_weather(weather))
+    except AttributeError:
+        print(None)
         exit(1)
-    try:
-        weather = get_weather(coordinates)
-    except ApiServiceError:
-        print(f'Не удалось получить погоду по координатам {coordinates}')
-        exit(1)
-    print(format_weather(weather))
 
     save_weather(
         weather,
