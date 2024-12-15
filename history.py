@@ -1,6 +1,7 @@
 from datetime import datetime
 from pathlib import Path
 from typing import TypedDict
+from abc import abstractmethod
 import json
 
 from weather_api_service import Weather
@@ -8,9 +9,10 @@ from weather_formatter import format_weather
 
 
 class WeatherStorage:
-    '''Хранилище погоды'''
-    def save(self, weather: Weather) -> None:
-        raise NotImplementedError
+    '''Базовый класс для хранилища погоды'''
+    @abstractmethod
+    def save(self, weather: Weather):
+        pass
 
 
 class PlainFileWeatherStorage(WeatherStorage):
@@ -22,7 +24,7 @@ class PlainFileWeatherStorage(WeatherStorage):
         now = datetime.now()
         formatted_weather = format_weather(weather)
         with open(self._file, "a") as f:
-            f.write(f"{now}\n{formatted_weather}\n")
+            f.write(f"{now}\n{formatted_weather}")
 
 
 class HistoryRecord(TypedDict):
